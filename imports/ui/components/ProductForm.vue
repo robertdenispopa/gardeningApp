@@ -32,7 +32,19 @@
         }
     },
     methods: {
-        handleSubmit(event) {}
-    },
+    handleSubmit(event) {
+        ProductsCollection.insert({
+            name: this.newName,
+            description: this.newDescription,
+            price: this.newPrice,
+            createdAt: new Date() // current time
+        });
+
+      // Clear form
+        this.newName = "";
+        this.newDescription = "";
+        this.newPrice = "";
+}
+},
 }
 </script>

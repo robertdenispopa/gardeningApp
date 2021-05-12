@@ -18,8 +18,9 @@
 
 <script>
 import Vue from "vue";
-import ProductForm from "./ProductForm.vue";
+
 import Product from "./Product.vue";
+import ProductForm from "./ProductForm.vue";
 
 import { ProductsCollection } from "../../api/collections/ProductsCollection.js";
 
@@ -37,7 +38,7 @@ export default {
     },
     meteor: {
     products() {
-        return ProductsCollection.find({}).fetch();
+        return ProductsCollection.find({}, { sort: { createdAt: -1 } }).fetch();;
     }
 }
 };
