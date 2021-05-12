@@ -1,8 +1,8 @@
 <template>
     <div>
-        <header>
+        <div class ="title-page">
             <h2>Products</h2>
-        </header>
+        </div>
         <div>
             <ul>
                 <Product 
@@ -28,9 +28,9 @@ export default {
     methods: {
     getProducts() {
     return [
-        { _id: 1, name: "Produs 1", description:" 1 ", price: 100},
-        { _id: 2, name: "Produs 2", description:" 1 ", price: 120},
-        { _id: 3, name: "Produs 3", description:" 1 ", price: 130}
+        { _id: 1, name: "Produs 1", description:" descriere smechera ", price: 100},
+        { _id: 2, name: "Produs 2", description:" descriere smechera ", price: 120},
+        { _id: 3, name: "Produs 3", description:" descriere smechera ", price: 130}
     ];
     }
     }

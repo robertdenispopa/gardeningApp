@@ -1,8 +1,6 @@
 <template>
     <div>
-        <li>{{ this.product.name }}</li>
-        <li>{{ this.product.description }}</li>
-        <li>{{ this.product.price }}</li>
+        <li>{{ this.product.name}}{{ this.product.description}}{{ this.product.price}}</li>
     </div>    
 </template>
 

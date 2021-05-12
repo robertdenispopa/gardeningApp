@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import router from './routes'
-import '../imports/ui/plugins'
 
+import '../imports/ui/plugins'
+import router from './routes'
 import App from '../imports/ui/App.vue'
 
 
