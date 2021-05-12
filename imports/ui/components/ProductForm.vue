@@ -1,0 +1,38 @@
+<template>
+    <form class="new-product" @submit.prevent="handleSubmit">
+    <input
+        type="text"
+        placeholder="Name..."
+        v-model="newName"
+    />
+    <input
+        type="text"
+        placeholder="Description..."
+        v-model="newDescription"
+    />
+    <input
+        type="text"
+        placeholder="Price..."
+        v-model="newPrice"
+    />
+    <button type="submit">Add Product</button>
+    </form>
+</template>
+
+<script>
+    import Vue from "vue";
+    import { ProductsCollection } from "../../api/collections/ProductsCollection.js";
+
+    export default {
+    data() {
+        return {
+        newName: "",
+        newDescription:"",
+        newPrice: ""
+        }
+    },
+    methods: {
+        handleSubmit(event) {}
+    },
+}
+</script>

@@ -4,6 +4,7 @@
             <h2>Products</h2>
         </div>
         <div>
+            <ProductForm/>
             <ul>
                 <Product 
                 v-for="product in products"
@@ -17,12 +18,16 @@
 
 <script>
 import Vue from "vue";
-import Product from "./Product.vue"
+import ProductForm from "./ProductForm.vue";
+import Product from "./Product.vue";
+
 import { ProductsCollection } from "../../api/collections/ProductsCollection.js";
+
 
 export default {
     components: {
-        Product
+        Product,
+        ProductForm
     },
     data() {
         return {};
