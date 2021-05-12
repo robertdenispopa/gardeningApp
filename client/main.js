@@ -1,7 +1,10 @@
 import Vue from 'vue'
 
-import '../imports/ui/plugins'
+import VueMeteorTracker from 'vue-meteor-tracker';
+Vue.use(VueMeteorTracker);
+
 import router from './routes'
+
 import App from '../imports/ui/App.vue'
 
 
