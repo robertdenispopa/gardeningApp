@@ -3,36 +3,36 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Products from './components/Products.vue'
-import Cart from './components/Cart.vue'
-import Orders from './components/Orders.vue'
-import Profile from './components/Profile.vue'
+import Products from '../imports/ui/components/Products.vue'
+import Cart from '../imports/ui/components/Cart.vue'
+import Orders from '../imports/ui/components/Orders.vue'
+import Profile from '../imports/ui/components/Profile.vue'
 
 const routes = [
-  {
+    {
     path: "/products",
     name: "Products",
     component: Products
-  },
-  {
+    },
+    {
     path: "/cart",
     name: 'Cart',
     component: Cart
-  },
-  {
+    },
+    {
     path: "/profile",
     name: 'Profile',
     component: Profile
-  },
-  {
+    },
+    {
     path: "/orders",
     name: 'Orders',
     component: Orders
-  },
+    },
 ]
 
 const router = new VueRouter({
-  routes
+    routes
 })
 
 export default router

@@ -16,7 +16,7 @@
 
 <script>
 import Vue from "vue";
-import Product from "./components/Product.vue";
+import Product from "./Product.vue";
 
 export default {
     components: {
