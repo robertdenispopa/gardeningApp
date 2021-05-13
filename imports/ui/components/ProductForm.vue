@@ -42,20 +42,10 @@
             };
             Meteor.call('products.insert', toSend);
 
-            //const user = Meteor.user()
-
-            /* ProductsCollection.insert({
-            name: this.newName,
-            description: this.newDescription,
-            price: this.newPrice,
-            createdAt: new Date(),
-            userId: user._id
-        });
-            */
-      // Clear form
-        this.newName = "";
-        this.newDescription = "";
-        this.newPrice = "";
+        // Clear form
+            this.newName = "";
+            this.newDescription = "";
+            this.newPrice = "";
 }
 },
 }

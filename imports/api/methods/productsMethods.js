@@ -24,6 +24,12 @@ Meteor.methods({
     if (!this.userId) {
         throw new Meteor.Error('Not authorized.');
     }
+
+    const product = ProductsCollection.findOne({ _id: productId, userId: this.userId });
+
+    if (!product) {
+        throw new Meteor.Error('Access denied.');
+    }
     
     ProductsCollection.remove(productId);
     },
@@ -36,6 +42,12 @@ Meteor.methods({
     throw new Meteor.Error('Not authorized.');
     }
     
+    const product = ProductsCollection.findOne({ _id: productId, userId: this.userId });
+
+    if (!product) {
+        throw new Meteor.Error('Access denied.');
+    }
+
     ProductsCollection.update(productId, {
         $set: {
         isChecked
