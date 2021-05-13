@@ -5,6 +5,16 @@
         </div>
         <div class="main">
             <ProductForm/>
+            <div class="filter">
+                <button
+                    v-model="hideCompleted"
+                    @click="toggleHideCompleted"
+                    >
+                <span v-if="hideCompleted">Show All</span>
+                <span v-else>Hide Completed Orders</span>
+                </button>
+            </div>
+
             <table >
                 <tr>
                     <th></th>
@@ -43,12 +53,26 @@ export default {
         ProductForm
     },
     data() {
-        return {};
+        return {
+        hideCompleted: false
+        };
     },
-    methods: {},
+    methods: {
+        toggleHideCompleted() {
+        this.hideCompleted = !this.hideCompleted;
+    }
+    },
     meteor: {
     products() {
-        return ProductsCollection.find({}, { sort: { createdAt: -1 } }).fetch();;
+        //return ProductsCollection.find({}, { sort: { createdAt: -1 } }).fetch();;
+        let filteredOrders = ProductsCollection.find({}, { sort: { createdAt: -1 } }).fetch();
+    
+        if (this.hideCompleted) {
+        filteredOrders = filteredOrders.filter(product => !product.checked);
+    }
+
+    return filteredOrders;
+    
     }
 }
 };

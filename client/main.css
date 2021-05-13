@@ -150,3 +150,12 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+.filter {
+    display: flex;
+    justify-content: center;
+}
+
+.filter > button {
+    background-color: #315481;
+}
