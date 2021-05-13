@@ -1,9 +1,30 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 import { ProductsCollection } from '../imports/api/collections/ProductsCollection';
 
-const insertProduct = product => ProductsCollection.insert({ name: product.name, description: product.description, price: product.price });
+const insertProduct = (product, user) => 
+    ProductsCollection.insert({ 
+        name: product.name, 
+        description: product.description, 
+        price: product.price, 
+        createdAt: new Date(),
+    });
+
+const SEED_USERNAME = 'meteorite';
+const SEED_PASSWORD = 'password';
+
 
 Meteor.startup(() => {
+
+    if (!Accounts.findUserByUsername(SEED_USERNAME)) {
+        Accounts.createUser({
+            username: SEED_USERNAME,
+            password: SEED_PASSWORD,
+        });
+    }
+
+    const user = Accounts.findUserByUsername(SEED_USERNAME);
+
     if (ProductsCollection.find().count() === 0) {
     [
         {name: 'First ', description: "ceva", price: 100},

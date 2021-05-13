@@ -2,10 +2,12 @@
     <div class="app">
         <div class ="title-page">
             <h2>Products</h2>
+            
         </div>
         <div class="main">
             <ProductForm/>
             <div class="filter">
+                <span v-if="incompleteCount > 0">({{incompleteCount}})</span>
                 <button
                     v-model="hideCompleted"
                     @click="toggleHideCompleted"
@@ -73,6 +75,9 @@ export default {
 
     return filteredOrders;
     
+    },
+    incompleteCount() {
+    return ProductsCollection.find({ checked: { $ne: true } }).count();
     }
 }
 };
