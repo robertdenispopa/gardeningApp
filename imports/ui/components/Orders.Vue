@@ -1,11 +1,14 @@
 <template>
     <div class="app">
         <div class ="title-page">
-            <h2>Orders</h2>
+            <h2>Orders
+            <span v-if="incompleteCount > 0">({{incompleteCount}})</span>
+            </h2>
+            
         </div>
         <div class="main">
             <div class="filter">
-                <span v-if="incompleteCount > 0">({{incompleteCount}})</span>
+                
                 <button
                     v-model="hideCompleted"
                     @click="toggleHideCompleted"

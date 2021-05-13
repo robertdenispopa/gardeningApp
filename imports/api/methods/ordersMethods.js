@@ -42,7 +42,7 @@ Meteor.methods({
     throw new Meteor.Error('Not authorized.');
     }
     
-    const order = OrdersCollection.findOne({ _id: ordertId, userId: this.userId });
+    const order = OrdersCollection.findOne({ _id: orderId, userId: this.userId });
 
     if (!order) {
         throw new Meteor.Error('Access denied.');
