@@ -1,5 +1,5 @@
 <template>
-    <form class="new-product" @submit.prevent="handleSubmit">
+    <form class="product-form" @submit.prevent="handleSubmit">
     <input
         type="text"
         placeholder="Name..."

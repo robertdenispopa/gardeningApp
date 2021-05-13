@@ -1,18 +1,19 @@
 <template>
-    <div>
-        <li v-bind:class="productClassName">
-            <input
+        <tr v-bind:class="productClassName">
+            <td> <input
             type="checkbox"
             readOnly
             v-bind:checked="!!this.product.checked"
             @click="toggleChecked"
-            />
-
-            <span class="text"> {{ this.product.name}}{{ this.product.description}}{{ this.product.price}} </span>
-
-            <button class="delete" @click="deleteThisProduct">×</button>
-        </li>
-    </div>    
+            /> </td>
+            <td>{{ this.product.name}}</td>
+            <td>{{ this.product.description}}</td>
+            <td>{{ this.product.price}}</td>
+            <td>
+                <button class="delete" @click="deleteThisProduct">×</button>
+                <button class="add" @click="addThisProduct">Add</button>
+            </td>
+        </tr>   
 </template>
 
 <script>
@@ -38,6 +39,11 @@
         },
         deleteThisProduct() {
     ProductsCollection.remove(this.product._id);
+    },
+    addThisProduct() {
+    CartCollection.insert( this.product._id,{
+            createdAt: new Date() // current time
+        });
     },
     }
 };
