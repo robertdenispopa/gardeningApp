@@ -8,7 +8,6 @@
         </div>
         <div class="main">
             <div class="filter">
-                
                 <button
                     v-model="hideCompleted"
                     @click="toggleHideCompleted"
@@ -34,9 +33,6 @@
                 />
                 
             </table>
-            <ul >
-                
-            </ul>
         </div>
     </div>
 </template>

@@ -1,11 +1,80 @@
 <template>
-    <div>Cart Component</div>
+    <div class="app">
+        <div class ="title-page">
+            <h2>Cart</h2>
+            
+        </div>
+        <div class="main">
+            >
+            <div class="loading" v-if="!$subReady.cart">Loading...</div>
+            <table class="products">
+                <tr>
+                    <th></th>
+                    <th> Name </th>
+                    <th> Description </th>
+                    <th> Price </th>
+                    <th></th>
+                </tr>
+                <cartElement 
+                class="product"
+                v-for="car in cart"
+                v-bind:key="car._id"
+                v-bind:car="car" 
+                />
+                
+            </table>
+            <div class"placeOrder"> Place Order... </div>
+        </div>
+    </div>
 </template>
 
 <script>
-export default {
-}
-</script>
 
-<style>
-</style>
+import Vue from "vue";
+
+import cartElement from "./cartElement.vue";
+
+import { CartCollection } from "../../api/collections/CartCollection.js";
+
+
+export default {
+    components: {
+        cartElement
+    },
+    data() {
+        return {
+        hideCompleted: false
+        };
+    },
+    methods: {
+        toggleHideCompleted() {
+        this.hideCompleted = !this.hideCompleted;
+    }
+    },
+    meteor: {
+    $subscribe: {
+    'cart': []
+    },
+    cart() {
+        if (!this.currentUser) {
+        return [];
+        }
+
+        
+        const userFilter = this.currentUser ? { userId: this.currentUser._id } : {};
+
+        
+        return CartCollection.find(
+            userFilter,
+            {
+            sort: { createdAt: -1 },
+            }
+        ).fetch();
+    },
+    
+    currentUser() {
+        return Meteor.user();
+    }
+}
+};
+</script>
