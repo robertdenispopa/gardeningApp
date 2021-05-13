@@ -32,13 +32,10 @@
     },
     methods: {
         toggleChecked() {
-          // Set the checked property to the opposite of its current value
-    ProductsCollection.update(this.product._id, {
-            $set: { checked: !this.product.checked }
-    });
+        Meteor.call('products.setIsChecked', this.product._id, !this.product.isChecked);;
         },
         deleteThisProduct() {
-    ProductsCollection.remove(this.product._id);
+        Meteor.call('products.remove', this.product._id);
     },
     addThisProduct() {
     CartCollection.insert( this.product._id,{

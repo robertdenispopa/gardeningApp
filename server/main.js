@@ -1,9 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { ProductsCollection } from '../imports/api/collections/ProductsCollection';
+import '../imports/api/methods/productsMethods';
 
 const insertProduct = (product, user) => 
     ProductsCollection.insert({ 
+        userId: user._id,
         name: product.name, 
         description: product.description, 
         price: product.price, 
@@ -17,7 +19,7 @@ var options = {
     password: 'password',
     profile: {
         address:'Archis, Arad',
-        type: 'admin',
+        usertype: 'admin',
     }
 }
 
@@ -30,7 +32,7 @@ Meteor.startup(() => {
             password: options.password,
             profile: {
                 address: 'Archis, Arad',
-                type: 'admin',
+                usertype: 'admin',
             }
         });
     }
@@ -39,13 +41,17 @@ Meteor.startup(() => {
 
     if (ProductsCollection.find().count() === 0) {
     [
-        {name: 'First ', description: "ceva", price: 100},
-        {name: 'Second ', description: "ceva", price: 100},
-        {name: 'Third ', description: "ceva", price: 100},
-        {name: 'Fourth ', description: "ceva", price: 100},
-        {name: 'Fifth ', description: "ceva", price: 100},
-        {name: 'Sixth ', description: "ceva", price: 100},
-        {name: 'Seventh ', description: "ceva", price: 100}
-    ].forEach(insertProduct)
+        
+        {
+            name: 'First ', 
+            description: "ceva", 
+            price: 100
+        },
+        {   
+            name: 'Second ', 
+            description: "ceva", 
+            price: 100
+        },
+    ].forEach(product => insertProduct(product, user))
 }
 });

@@ -24,11 +24,14 @@
         </div>
         <div>
             <label for="usertype">UserType</label>
-            <select v-model="usertype" />
-                <option disabled value="">Please select one</option>
-                <option>Buyer</option>
-                <option>Seller</option>
-            </select>
+            <input
+                id="usertype"
+                name="usertype"
+                type="text"
+                placeholder="Usertype"
+                required
+                v-model="usertype"
+            />
         </div>
 
     <div>
@@ -51,6 +54,8 @@
 
 <script>
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
+
 
 export default {
     name: "SignupForm",

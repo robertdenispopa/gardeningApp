@@ -180,7 +180,7 @@ tr:nth-child(even) {
     flex-grow: 1;
     box-sizing: border-box;
     padding: 10px 6px;
-    background: transparent;
+    background: whitesmoke;
     border: 1px solid #aaa;
     width: 100%;
     font-size: 1em;
@@ -193,7 +193,7 @@ tr:nth-child(even) {
 }
 
 .signup-form > div > button {
-    background-color: #62807e;
+    background-color: #3b3ee0;
 }
 
 .login-form {
@@ -214,6 +214,17 @@ tr:nth-child(even) {
 }
 
 .login-form > div  > input {
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 10px 6px;
+    background: transparent;
+    border: 1px solid #aaa;
+    width: 100%;
+    font-size: 1em;
+    margin-right: 16px;
+    margin-top: 4px;
+}
+.select{
     flex-grow: 1;
     box-sizing: border-box;
     padding: 10px 6px;

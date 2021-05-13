@@ -33,13 +33,25 @@
     },
     methods: {
     handleSubmit(event) {
-        ProductsCollection.insert({
+            if (this.newName.length === 0) return;
+            var toSend = {
+                name:this.newName,
+                description:this.newDescription,
+                price:this.newPrice,
+
+            };
+            Meteor.call('products.insert', toSend);
+
+            //const user = Meteor.user()
+
+            /* ProductsCollection.insert({
             name: this.newName,
             description: this.newDescription,
             price: this.newPrice,
-            createdAt: new Date() // current time
+            createdAt: new Date(),
+            userId: user._id
         });
-
+            */
       // Clear form
         this.newName = "";
         this.newDescription = "";

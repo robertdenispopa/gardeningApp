@@ -65,19 +65,32 @@ export default {
     }
     },
     meteor: {
+    $subscribe: {
+    'products': []
+    },
     products() {
-        //return ProductsCollection.find({}, { sort: { createdAt: -1 } }).fetch();;
-        let filteredOrders = ProductsCollection.find({}, { sort: { createdAt: -1 } }).fetch();
+        if (!this.currentUser) {
+        return [];
+        }
     
-        if (this.hideCompleted) {
-        filteredOrders = filteredOrders.filter(product => !product.checked);
-    }
-
-    return filteredOrders;
-    
+        const hideCompletedFilter = { isChecked: { $ne: true } };
+        
+        const userFilter = this.currentUser ? { userId: this.currentUser._id } : {};
+        
+        const pendingOnlyFilter = { ...hideCompletedFilter, ...userFilter };
+        
+        return ProductsCollection.find(
+            this.hideCompleted ? pendingOnlyFilter : userFilter,
+            {
+            sort: { createdAt: -1 },
+            }
+        ).fetch();
     },
     incompleteCount() {
-    return ProductsCollection.find({ checked: { $ne: true } }).count();
+    return ProductsCollection.find({ isChecked: { $ne: true }, userId: this.currentUser._id }).count();
+    },
+    currentUser() {
+        return Meteor.user();
     }
 }
 };
