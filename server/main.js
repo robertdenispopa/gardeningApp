@@ -11,15 +11,27 @@ const insertProduct = (product, user) =>
     });
 
 const SEED_USERNAME = 'meteorite';
-const SEED_PASSWORD = 'password';
+
+var options = {
+    username: 'meteorite',
+    password: 'password',
+    profile: {
+        address:'Archis, Arad',
+        type: 'admin',
+    }
+}
 
 
 Meteor.startup(() => {
 
     if (!Accounts.findUserByUsername(SEED_USERNAME)) {
         Accounts.createUser({
-            username: SEED_USERNAME,
-            password: SEED_PASSWORD,
+            username: options.username,
+            password: options.password,
+            profile: {
+                address: 'Archis, Arad',
+                type: 'admin',
+            }
         });
     }
 

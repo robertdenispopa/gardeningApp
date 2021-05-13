@@ -159,6 +159,43 @@ tr:nth-child(even) {
 .filter > button {
     background-color: #315481;
 }
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form > div {
+    margin: 8px;
+}
+
+.signup-form > div > label {
+    font-weight: bold;
+}
+
+.signup-form > div  > input {
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 10px 6px;
+    background: transparent;
+    border: 1px solid #aaa;
+    width: 100%;
+    font-size: 1em;
+    margin-right: 16px;
+    margin-top: 4px;
+}
+
+.signup-form > div > input:focus {
+    outline: 0;
+}
+
+.signup-form > div > button {
+    background-color: #62807e;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;
@@ -195,6 +232,7 @@ tr:nth-child(even) {
 .login-form > div > button {
     background-color: #62807e;
 }
+
 .user {
     display: flex;
     cursor: pointer;

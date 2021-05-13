@@ -26,12 +26,14 @@
 
     <div>
         <button type="submit">Log In</button>
+        <button @click="goToSignup">Sign Up</button>
     </div>
     </form>
 </template>
 
 <script>
 import { Meteor } from 'meteor/meteor';
+import Router from 'vue-router';
 
 export default {
     name: "LoginForm",
@@ -44,7 +46,10 @@ export default {
     methods: {
     handleSubmit(event) {
         Meteor.loginWithPassword(this.username, this.password);
-    }
+    },
+    goToSignup() {
+    Router.go('signup');
+    },
     },
 }
 </script>
