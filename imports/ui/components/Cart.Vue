@@ -15,7 +15,7 @@
                     <th> Price </th>
                     <th></th>
                 </tr>
-                <cartElement 
+                <CartElement 
                 class="product"
                 v-for="car in cart"
                 v-bind:key="car._id"
@@ -32,14 +32,14 @@
 
 import Vue from "vue";
 
-import cartElement from "./cartElement.vue";
+import CartElement from "./CartElement.vue";
 
 import { CartCollection } from "../../api/collections/CartCollection.js";
 
 
 export default {
     components: {
-        cartElement
+        CartElement
     },
     data() {
         return {

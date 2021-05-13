@@ -1,11 +1,5 @@
 <template>
-        <tr v-bind:class="productClassName">
-            <td> <input
-            type="checkbox"
-            readOnly
-            v-bind:checked="!!this.product.checked"
-            @click="toggleChecked"
-            /> </td>
+        <tr>
             <td>{{ this.product.name}}</td>
             <td>{{ this.product.description}}</td>
             <td>{{ this.product.price}}</td>
@@ -25,11 +19,6 @@
         data() {
         return {};
         },
-    computed: {
-        productClassName: function() {
-        return this.product.checked ? "checked" : "";
-        }
-    },
     methods: {
         toggleChecked() {
         Meteor.call('products.setIsChecked', this.product._id, !this.product.isChecked);;

@@ -2,24 +2,12 @@
     <div class="app">
         <div class ="title-page">
             <h2>Products</h2>
-            
         </div>
         <div class="main">
             <ProductForm/>
-            <div class="filter">
-                <span v-if="incompleteCount > 0">({{incompleteCount}})</span>
-                <button
-                    v-model="hideCompleted"
-                    @click="toggleHideCompleted"
-                    >
-                <span v-if="hideCompleted">Show All</span>
-                <span v-else>Hide Completed Orders</span>
-                </button>
-            </div>
-
-            <table >
+            <div class="loading" v-if="!$subReady.products">Loading...</div>
+            <table class="products">
                 <tr>
-                    <th></th>
                     <th> Name </th>
                     <th> Description </th>
                     <th> Price </th>
@@ -86,9 +74,7 @@ export default {
             }
         ).fetch();
     },
-    incompleteCount() {
-    return ProductsCollection.find({ isChecked: { $ne: true }, userId: this.currentUser._id }).count();
-    },
+
     currentUser() {
         return Meteor.user();
     }
