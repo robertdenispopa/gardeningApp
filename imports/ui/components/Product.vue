@@ -4,8 +4,8 @@
             <td>{{ this.product.description}}</td>
             <td>{{ this.product.price}}</td>
             <td>
-                <button class="delete" @click="deleteThisProduct">×</button>
-                <button class="add" @click="addThisProduct">Add</button>
+                <button class="delete" @click="deleteThisProduct" v-if="currentUser.profile.usertype == 'Seller'||'admin'">×</button>
+                <button class="add" @click="addThisProduct"v-if="currentUser.profile.usertype == 'Buyer'||'admin'">Add</button>
             </td>
         </tr>   
 </template>
@@ -31,6 +31,11 @@
             createdAt: new Date() // current time
         });
     },
+    },
+    meteor:{
+        currentUser() {
+            return Meteor.user(); 
+            }
     }
 };
 </script>

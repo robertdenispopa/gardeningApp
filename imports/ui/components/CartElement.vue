@@ -3,6 +3,7 @@
             <td>{{ this.cartElement.name}}</td>
             <td>{{ this.cartElement.description}}</td>
             <td>{{ this.cartElement.price}}</td>
+            <td><button class="delete" @click="deleteThisElement">×</button></td>
         </tr>   
 </template>
 
@@ -19,6 +20,9 @@
         
     },
     methods: {
+        deleteThisElement() {
+        Meteor.call('cart.remove', this.cartElement._id);
+    }
     }
 };
 </script>

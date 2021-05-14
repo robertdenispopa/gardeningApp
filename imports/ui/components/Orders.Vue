@@ -83,7 +83,7 @@ export default {
         ).fetch();
     },
     incompleteCount() {
-    return OrdersCollection.find({ isChecked: { $ne: true }, userId: this.currentUser._id }).count();
+    //return OrdersCollection.find({ isChecked: { $ne: true }, userId: this.currentUser._id }).count();
     },
     currentUser() {
         return Meteor.user();

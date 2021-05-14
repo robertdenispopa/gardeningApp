@@ -7,6 +7,7 @@ import { CartCollection } from '../imports/api/collections/CartCollection';
 import '../imports/api/methods/productsMethods';
 import '../imports/api/methods/ordersMethods';
 import '../imports/api/methods/cartMethods';
+import '../imports/api/methods/accountMethods';
 
 import '../imports/api/publications/productsPublications';
 import '../imports/api/publications/ordersPublications';

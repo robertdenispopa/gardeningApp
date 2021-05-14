@@ -1,84 +1,70 @@
 <template>
-    <form class="signup-form" @submit.prevent="handleSubmit">
-        <div>
-            <label for="username">Username</label>
-            <input
-                id="username"
-                name="username"
-                type="text"
-                placeholder="Username"
-                required
-                v-model="username"
-            />
-        </div>
-        <div>
-            <label for="address">Address</label>
-            <input
-                id="address"
-                name="address"
-                type="text"
-                placeholder="Address"
-                required
-                v-model="address"
-            />
-        </div>
-        <div>
-            <label for="usertype">UserType</label>
-            <input
-                id="usertype"
-                name="usertype"
-                type="text"
-                placeholder="Usertype"
-                required
-                v-model="usertype"
-            />
-        </div>
-
     <div>
-    <label for="password">Password</label>
-    <input
-        id="password"
-        name="password"
-        type="password"
-        placeholder="Password"
-        required
-        v-model="password"
-    />
-    </div>
+        <form class="signup-form" @submit.prevent="handleSubmit">
+            
+                <label for="username">Username</label>
+                <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    placeholder="Username"
+                    required
+                    v-model="toSend.username"
+                />
 
-    <div>
-        <button type="submit">Create Account</button>
+                <label for="address">Address</label>
+                <input
+                    id="address"
+                    name="address"
+                    type="text"
+                    placeholder="Address"
+                    required
+                    v-model="toSend.profile.address"
+                />
+            
+                <label for="usertype">UserType</label>
+                <select id="usertype" name="usertype" v-model="toSend.profile.usertype">
+                    <option value="Buyer" selected >Buyer</option>
+                    <option value="Seller">Seller</option>
+                </select>
+            
+                <label for="password">Password</label>
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    required
+                    v-model="toSend.password"
+                />
+            
+                <button type="submit">Create Account</button>
+        </form>
     </div>
-    </form>
 </template>
 
 <script>
 import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
 
 
 export default {
     name: "SignupForm",
     data() {
     return {
-        username: "",
-        address:"",
-        password: "",
-        usertype:""
-    };
+        toSend:{
+            username: "",
+            password: "",
+            profile: {
+                address: "",
+                usertype: "",
+            }
+        }
+        };
     },
+    
     methods: {
     handleSubmit(event) {
-        if (!Accounts.findUserByUsername(this.username)) {
-        Accounts.createUser({
-            username: this.username,
-            password: this.password,
-            profile: {
-                address: this.address,
-                usertype: this.usertype,
-            }
-        });
-    }
+        Meteor.call('account.create', this.toSend);
     }
     },
 }

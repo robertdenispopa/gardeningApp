@@ -23,7 +23,7 @@
                 />
                 
             </table>
-            <div class"placeOrder"> Place Order... </div>
+            <button class"placeOrder"> Place Order... </button>
         </div>
     </div>
 </template>
