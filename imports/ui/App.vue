@@ -9,8 +9,14 @@
         
         <div class="app-menu">
           <router-link to="/products" class="item">Products</router-link>
-          <router-link to="/orders" class="item" v-if="currentUser.profile.usertype == 'Seller'||'admin'">Orders</router-link>
-          <router-link to="/cart" class="item" v-if="currentUser.profile.usertype == 'Buyer'||'admin'">Cart</router-link>
+          <div v-if="currentUser.profile.usertype === 'Seller'"> 
+            <router-link to="/orders" class="item" >Orders</router-link>
+          </div>
+          <div>
+            <router-link to="/cart" class="item" v-if="currentUser.profile.usertype === 'Buyer'">Cart</router-link>
+          </div>
+          
+          
           <router-link to="/profile" class="item">Profile</router-link>
         </div>
         <div class="login">

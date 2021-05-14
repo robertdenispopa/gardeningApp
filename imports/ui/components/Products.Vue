@@ -1,11 +1,13 @@
 <template>
     <div class="app">
-        <div class ="title-page">
-            <h2>Products</h2>
-        </div>
+        
         <div class="main">
-            <ProductForm/>
-
+            <div class ="title-page">
+                <h2>Products</h2>
+            </div>
+            <div v-if="this.currentUser.profile.usertype === 'Seller' ">
+                <ProductForm/>
+            </div>
             <table class="products">
                 <tr>
                     <th> Name </th>
@@ -44,7 +46,6 @@ export default {
     },
     data() {
         return {
-        hideCompleted: false
         };
     },
     methods: {
@@ -53,30 +54,30 @@ export default {
     }
     },
     meteor: {
+    $subscribe: {
+    'products': []
+    },
+    products() {
+
+
+        const SellerFilter = this.currentUser? { userId: this.currentUser._id } : {};
+        
+        if(this.currentUser.profile.usertype === 'Seller'){
+            return ProductsCollection.find(
+                        SellerFilter,
+                        {
+                        sort: { createdAt: -1 },
+                        }
+                    ).fetch();
+        } else {
+            return ProductsCollection.find().fetch();
+        }
+
+    },
 
     currentUser() {
         return Meteor.user();
-    },        
-    products() {
-        if (this.currentUser.profile.usertype == 'Seller') {
-
-        const userFilter = this.currentUser ? { userId: this.currentUser._id } : {};      
-        return ProductsCollection.find(
-            userFilter,
-            {
-            sort: { createdAt: -1 },
-            }
-        ).fetch();
-        } else if(this.currentUser.profile.usertype == 'Buyer'){
-        return ProductsCollection.find({sort: { createdAt: -1 }}).fetch();
-        }
-    
-
-        
-        
-    },
-
-
+    }
 }
 };
 </script>

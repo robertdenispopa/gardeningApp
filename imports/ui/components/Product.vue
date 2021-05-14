@@ -3,10 +3,10 @@
             <td>{{ this.product.name}}</td>
             <td>{{ this.product.description}}</td>
             <td>{{ this.product.price}}</td>
-            <td v-if="currentUser.profile.usertype == 'Seller'||'admin'">
+            <td v-if="currentUser.profile.usertype == 'Seller'">
                 <button class="delete" @click="deleteThisProduct">×</button>
             </td>
-            <td v-if="currentUser.profile.usertype == 'Buyer'||'admin'">
+            <td v-if="currentUser.profile.usertype == 'Buyer'">
                 <button class="add" @click="addThisProduct" >Add</button>
             </td>
         </tr>   
@@ -14,7 +14,6 @@
 
 <script>
     import Vue from "vue";
-    import { ProductsCollection } from "../../api/collections/ProductsCollection.js";
 
     export default {
     props: ["product"],
@@ -29,13 +28,15 @@
         Meteor.call('products.remove', this.product._id);
     },
     addThisProduct() {
+
+        var toSend = {
+                name:this.product.name,
+                description:this.product.description,
+                price:this.product.price,
+
+            };
     
-        Meteor.call('cart.insert', {
-            productId:this.product._id,
-            username:this.currentUser._id,
-            address:this.currentUser.profile.address,
-            createdAt: new Date()
-            });
+        Meteor.call('cart.insert', toSend);
     },
     },
     meteor:{

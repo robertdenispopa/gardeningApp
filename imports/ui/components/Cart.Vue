@@ -1,11 +1,10 @@
 <template>
     <div class="app">
-        <div class ="title-page">
-            <h2>Cart</h2>
-            
-        </div>
+        
         <div class="main">
-            >
+            <div class ="title-page">
+            <h2>Cart</h2>
+            </div>
             <div class="loading" v-if="!$subReady.cart">Loading...</div>
             <table class="products">
                 <tr>
