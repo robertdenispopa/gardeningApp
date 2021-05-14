@@ -3,9 +3,11 @@
             <td>{{ this.product.name}}</td>
             <td>{{ this.product.description}}</td>
             <td>{{ this.product.price}}</td>
-            <td>
-                <button class="delete" @click="deleteThisProduct" v-if="currentUser.profile.usertype == 'Seller'||'admin'">×</button>
-                <button class="add" @click="addThisProduct"v-if="currentUser.profile.usertype == 'Buyer'||'admin'">Add</button>
+            <td v-if="currentUser.profile.usertype == 'Seller'||'admin'">
+                <button class="delete" @click="deleteThisProduct">×</button>
+            </td>
+            <td v-if="currentUser.profile.usertype == 'Buyer'||'admin'">
+                <button class="add" @click="addThisProduct" >Add</button>
             </td>
         </tr>   
 </template>
@@ -27,9 +29,13 @@
         Meteor.call('products.remove', this.product._id);
     },
     addThisProduct() {
-    CartCollection.insert( this.product._id,{
-            createdAt: new Date() // current time
-        });
+    
+        Meteor.call('cart.insert', {
+            productId:this.product._id,
+            username:this.currentUser._id,
+            address:this.currentUser.profile.address,
+            createdAt: new Date()
+            });
     },
     },
     meteor:{

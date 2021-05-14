@@ -26,7 +26,6 @@
 
     <div>
         <button type="submit">Log In</button>
-        <button @click="goToSignup">Sign Up</button>
     </div>
     </form>
 </template>
@@ -47,9 +46,7 @@ export default {
     handleSubmit(event) {
         Meteor.loginWithPassword(this.username, this.password);
     },
-    goToSignup() {
-    Router.go('signup');
-    },
+
     },
 }
 </script>

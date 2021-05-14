@@ -7,7 +7,6 @@ import Products from '../imports/ui/components/Products.vue';
 import Cart from "../imports/ui/components/Cart.vue"
 import Orders from '../imports/ui/components/Orders.vue';
 import Profile from '../imports/ui/components/Profile.vue';
-import Signup from '../imports/ui/components/SignupForm.vue';
 
 const routes = [
     {
@@ -31,12 +30,6 @@ const routes = [
     name: 'Profile',
     component: Profile
     },
-    {
-        path: "/signup",
-        name: 'Signup',
-        component: Signup
-    },
-
     
 ]
 

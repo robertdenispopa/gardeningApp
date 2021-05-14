@@ -34,9 +34,9 @@ Meteor.methods({
     OrdersCollection.remove(orderId);
     },
     
-    'orders.setIsChecked'(orderId, isChecked) {
+    'orders.setIsChecked'(orderId, checked) {
     check(orderId, String);
-    check(isChecked, Boolean);
+    check(checked, Boolean);
     
     if (!this.userId) {
     throw new Meteor.Error('Not authorized.');
@@ -50,7 +50,7 @@ Meteor.methods({
 
     OrdersCollection.update(orderId, {
         $set: {
-        isChecked
+        checked
         }
     });
     }

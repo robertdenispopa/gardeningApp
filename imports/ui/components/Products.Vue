@@ -5,7 +5,7 @@
         </div>
         <div class="main">
             <ProductForm/>
-            <div class="loading" v-if="!$subReady.products">Loading...</div>
+
             <table class="products">
                 <tr>
                     <th> Name </th>
@@ -53,31 +53,30 @@ export default {
     }
     },
     meteor: {
-    $subscribe: {
-    'products': []
-    },
+
+    currentUser() {
+        return Meteor.user();
+    },        
     products() {
-        if (!this.currentUser) {
-        return [];
-        }
-    
-        const hideCompletedFilter = { isChecked: { $ne: true } };
-        
-        const userFilter = this.currentUser ? { userId: this.currentUser._id } : {};
-        
-        const pendingOnlyFilter = { ...hideCompletedFilter, ...userFilter };
-        
+        if (this.currentUser.profile.usertype == 'Seller') {
+
+        const userFilter = this.currentUser ? { userId: this.currentUser._id } : {};      
         return ProductsCollection.find(
-            this.hideCompleted ? pendingOnlyFilter : userFilter,
+            userFilter,
             {
             sort: { createdAt: -1 },
             }
         ).fetch();
+        } else if(this.currentUser.profile.usertype == 'Buyer'){
+        return ProductsCollection.find({sort: { createdAt: -1 }}).fetch();
+        }
+    
+
+        
+        
     },
 
-    currentUser() {
-        return Meteor.user();
-    }
+
 }
 };
 </script>

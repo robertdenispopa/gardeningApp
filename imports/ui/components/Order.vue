@@ -1,14 +1,14 @@
 <template>
         <tr v-bind:class="orderClassName">
+            <td>{{ this.order.name}}</td>
+            <td>{{ this.order.description}}</td>
+            <td>{{ this.order.price}}</td>
             <td> <input
             type="checkbox"
             readOnly
             v-bind:checked="!!this.order.checked"
             @click="toggleChecked"
             /> </td>
-            <td>{{ this.order.name}}</td>
-            <td>{{ this.order.description}}</td>
-            <td>{{ this.order.price}}</td>
         </tr>   
 </template>
 
@@ -28,7 +28,7 @@
     },
     methods: {
         toggleChecked() {
-        Meteor.call('orders.setIsChecked', this.order._id, !this.order.isChecked);
+        Meteor.call('orders.setIsChecked', this.order._id, !this.order.checked);
         },
     }
 };

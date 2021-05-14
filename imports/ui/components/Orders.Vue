@@ -19,11 +19,10 @@
             <div class="loading" v-if="!$subReady.orders">Loading...</div>
             <table class="products">
                 <tr>
-                    <th></th>
                     <th> Name </th>
                     <th> Description </th>
                     <th> Price </th>
-                    <th></th>
+                    <th> Completed </th>
                 </tr>
                 <Order 
                 class="product"
@@ -64,12 +63,16 @@ export default {
     $subscribe: {
     'orders': []
     },
+    currentUser() {
+        return Meteor.user();
+    },
+
     orders() {
         if (!this.currentUser) {
         return [];
         }
     
-        const hideCompletedFilter = { isChecked: { $ne: true } };
+        const hideCompletedFilter = { checked: { $ne: true } };
         
         const userFilter = this.currentUser ? { userId: this.currentUser._id } : {};
         
@@ -83,11 +86,9 @@ export default {
         ).fetch();
     },
     incompleteCount() {
-    //return OrdersCollection.find({ isChecked: { $ne: true }, userId: this.currentUser._id }).count();
+    return OrdersCollection.find({ checked: { $ne: true }, userId: this.currentUser._id }).count();
     },
-    currentUser() {
-        return Meteor.user();
-    }
+    
 }
 };
 </script>
