@@ -10,11 +10,11 @@ Meteor.methods({
     }
     
     ProductsCollection.insert({
-    name:toSend.name,
-    description:toSend.description, 
-    price:toSend.price,
-    createdAt: new Date,
-    userId: this.userId,
+        name:toSend.name,
+        description:toSend.description, 
+        price:toSend.price,
+        createdAt: new Date,
+        userId: this.userId,
     })
     },
     

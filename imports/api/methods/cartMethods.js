@@ -33,25 +33,5 @@ Meteor.methods({
     
     CartCollection.remove(carId);
     },
-    
-    'cart.setIsChecked'(carId, isChecked) {
-    check(carId, String);
-    check(isChecked, Boolean);
-    
-    if (!this.userId) {
-    throw new Meteor.Error('Not authorized.');
-    }
-    
-    const car = CartCollection.findOne({ _id: carId, userId: this.userId });
 
-    if (!car) {
-        throw new Meteor.Error('Access denied.');
-    }
-
-    CartCollection.update(carId, {
-        $set: {
-        isChecked
-        }
-    });
-    }
 });

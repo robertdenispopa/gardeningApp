@@ -3,10 +3,10 @@
             <td>{{ this.product.name}}</td>
             <td>{{ this.product.description}}</td>
             <td>{{ this.product.price}}</td>
-            <td v-if="currentUser.profile.usertype == 'Seller'">
+            <td v-if="currentUser.profile.usertype === 'Seller'">
                 <button class="delete" @click="deleteThisProduct">×</button>
             </td>
-            <td v-if="currentUser.profile.usertype == 'Buyer'">
+            <td v-if="currentUser.profile.usertype === 'Buyer'">
                 <button class="add" @click="addThisProduct" >Add</button>
             </td>
         </tr>   
@@ -21,23 +21,21 @@
         return {};
         },
     methods: {
-        toggleChecked() {
-        Meteor.call('products.setIsChecked', this.product._id, !this.product.isChecked);;
-        },
         deleteThisProduct() {
         Meteor.call('products.remove', this.product._id);
     },
-    addThisProduct() {
+        addThisProduct() {
 
-        var toSend = {
-                name:this.product.name,
-                description:this.product.description,
-                price:this.product.price,
+            var toSend = {
+                    name:this.product.name,
+                    description:this.product.description,
+                    price:this.product.price,
+                    userOfItem:this.product.userId
 
-            };
-    
-        Meteor.call('cart.insert', toSend);
-    },
+                };
+        
+            Meteor.call('cart.insert', toSend);
+        },
     },
     meteor:{
         currentUser() {

@@ -15,6 +15,7 @@ Meteor.methods({
         price:toSend.price,
         createdAt: new Date,
         userId: this.userId,
+        address: toSend.address,
     })
     },
     

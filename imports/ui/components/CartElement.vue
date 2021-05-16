@@ -1,8 +1,8 @@
 <template>
         <tr>
-            <td>{{ this.cartElement.name}}</td>
-            <td>{{ this.cartElement.description}}</td>
-            <td>{{ this.cartElement.price}}</td>
+            <td>{{ this.car.name}}</td>
+            <td>{{ this.car.description}}</td>
+            <td>{{ this.car.price}}</td>
             <td><button class="delete" @click="deleteThisElement">×</button></td>
         </tr>   
 </template>
@@ -12,7 +12,7 @@
     import { CartCollection } from "../../api/collections/CartCollection.js";
 
     export default {
-    props: ["cartElement"],
+    props: ["car"],
         data() {
         return {};
         },
@@ -21,7 +21,7 @@
     },
     methods: {
         deleteThisElement() {
-        Meteor.call('cart.remove', this.cartElement._id);
+        Meteor.call('cart.remove', this.car._id);
     }
     }
 };

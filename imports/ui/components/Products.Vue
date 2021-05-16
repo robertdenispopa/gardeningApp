@@ -58,11 +58,11 @@ export default {
     'products': []
     },
     products() {
+        const currentUser = Meteor.user();
 
-
-        const SellerFilter = this.currentUser? { userId: this.currentUser._id } : {};
+        const SellerFilter = currentUser? { userId: currentUser._id } : {};
         
-        if(this.currentUser.profile.usertype === 'Seller'){
+        if(currentUser.profile.usertype === 'Seller'){
             return ProductsCollection.find(
                         SellerFilter,
                         {

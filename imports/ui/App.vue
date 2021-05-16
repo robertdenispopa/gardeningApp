@@ -16,7 +16,6 @@
             <router-link to="/cart" class="item" v-if="currentUser.profile.usertype === 'Buyer'">Cart</router-link>
           </div>
           
-          
           <router-link to="/profile" class="item">Profile</router-link>
         </div>
         <div class="login">

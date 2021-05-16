@@ -5,14 +5,13 @@
             <div class ="title-page">
             <h2>Cart</h2>
             </div>
-            <div class="loading" v-if="!$subReady.cart">Loading...</div>
+                <div class="loading" v-if="!$subReady.cart">Loading...</div>
             <table class="products">
                 <tr>
-                    <th></th>
                     <th> Name </th>
                     <th> Description </th>
                     <th> Price </th>
-                    <th></th>
+                    <th> Delete</th>
                 </tr>
                 <CartElement 
                 class="product"
@@ -22,8 +21,12 @@
                 />
                 
             </table>
-            <button class"placeOrder"> Place Order... </button>
+            <br><br>
+            <div class="item" >
+                    <center>  <button class="placeOrder" @click="placeOrder" >Place Order</button> </center>
+            </div>
         </div>
+
     </div>
 </template>
 
@@ -34,21 +37,42 @@ import Vue from "vue";
 import CartElement from "./CartElement.vue";
 
 import { CartCollection } from "../../api/collections/CartCollection.js";
-
+import { OrdersCollection } from "../../api/collections/OrdersCollection.js";
 
 export default {
     components: {
         CartElement
     },
-    data() {
-        return {
-        hideCompleted: false
-        };
-    },
+
     methods: {
-        toggleHideCompleted() {
-        this.hideCompleted = !this.hideCompleted;
-    }
+            placeOrder() {
+            var currentUser =  Meteor.user();
+
+            const userFilter = currentUser ? { userId: currentUser._id } : {};
+            var items = CartCollection.find(
+            userFilter,{sort: { createdAt: -1 },}).fetch();
+            
+            console.log(items);
+
+            items.forEach(item => OrderFunction(item));
+
+            function OrderFunction(item){
+                
+                
+                var toSend = {
+                    name:item.name,
+                    description:item.description,
+                    price:item.price,
+                    address:currentUser.profile.address
+
+                };
+        
+            Meteor.call('orders.insert', toSend);
+            Meteor.call('cart.remove', item._id);
+            }
+        },
+
+        
     },
     meteor: {
     $subscribe: {
@@ -63,13 +87,11 @@ export default {
         const userFilter = this.currentUser ? { userId: this.currentUser._id } : {};
 
         
-        return CartCollection.find(
-            userFilter,
-            {
-            sort: { createdAt: -1 },
-            }
-        ).fetch();
+        return  CartCollection.find(
+            userFilter,{sort: { createdAt: -1 },}).fetch();
+        
     },
+
     
     currentUser() {
         return Meteor.user();

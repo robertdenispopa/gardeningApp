@@ -39,7 +39,7 @@ var options = {
     password: 'password',
     profile: {
         address:'Archis, Arad',
-        usertype: 'admin',
+        usertype: 'Seller',
     }
 }
 

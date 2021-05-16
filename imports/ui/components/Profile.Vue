@@ -7,15 +7,12 @@
         
             <label>Address:{{this.currentUser.profile.address}}</label>
         
-
         
             <label>UserType:{{this.currentUser.profile.usertype}}</label>
         
-
         
             <button >Edit</button>
         
-
     </div>
 </template>
 
