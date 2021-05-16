@@ -12,22 +12,6 @@
                     v-model="toSend.username"
                 />
 
-                <label for="address">Address</label>
-                <input
-                    id="address"
-                    name="address"
-                    type="text"
-                    placeholder="Address"
-                    required
-                    v-model="toSend.profile.address"
-                />
-            
-                <label for="usertype">UserType</label>
-                <select id="usertype" name="usertype" v-model="toSend.profile.usertype">
-                    <option value="Buyer" selected >Buyer</option>
-                    <option value="Seller">Seller</option>
-                </select>
-            
                 <label for="password">Password</label>
                 <input
                     id="password"
@@ -37,7 +21,43 @@
                     required
                     v-model="toSend.password"
                 />
-            
+
+                <label for="usertype">UserType</label>
+                <select id="usertype" name="usertype" v-model="toSend.profile.usertype">
+                    <option value="Buyer" selected >Buyer</option>
+                    <option value="Seller">Seller</option>
+                </select>
+
+                <label for="fullname">Fullname</label>
+                <input
+                    id="fullname"
+                    name="fullname"
+                    type="text"
+                    placeholder="Fullname"
+                    required
+                    v-model="toSend.profile.address"
+                />
+
+                <label for="address">Address</label>
+                <input
+                    id="address"
+                    name="address"
+                    type="text"
+                    placeholder="Address"
+                    required
+                    v-model="toSend.profile.address"
+                />
+
+                <label for="phone">Phone</label>
+                <input
+                    id="phone"
+                    name="phone"
+                    type="text"
+                    placeholder="Phone"
+                    required
+                    v-model="toSend.profile.phone"
+                />
+
                 <button type="submit">Create Account</button>
         </form>
     </div>
@@ -55,8 +75,11 @@ export default {
             username: "",
             password: "",
             profile: {
-                address: "",
+                
                 usertype: "",
+                fullname:"",
+                address: "",
+                phone:"",
             }
         }
         };

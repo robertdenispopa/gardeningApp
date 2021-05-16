@@ -37,6 +37,9 @@ header {
     font-size: 1.5em;
     margin: 0 1em 0 0;
     display: inline-block;
+    font-weight: bold;
+
+    color: #16b91e;
 }
 
 .app-header {
@@ -54,11 +57,15 @@ header {
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
+
 }
+
 
 .item {
     font-size: 1.5em;
     margin: 0 1em 0 0;
+    font-weight: bold;
+    color: #16b91e;
 }
 .new-product {
     margin-top: 1rem;
@@ -268,4 +275,55 @@ tr:nth-child(even) {
 }
 .HideForm{
     display:none;
+}
+
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 50%;
+    height: 15%;
+    margin-bottom: 15px;
+    
+}
+.input-container > label{
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 10px 6px;
+    background: white;
+    border: 1px solid #aaa;
+    width: 50%;
+    font-size: 1em;
+    margin-right: 16px;
+    margin-top: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+.input-container > button{
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 10px 6px;
+    background-color: #46df27;
+    border: 1px solid #aaa;
+    width: 50%;
+    font-size: 1em;
+    margin-right: 16px;
+    margin-top: 4px;
+    text-align: center;
+}
+
+
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+.profile{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
 }

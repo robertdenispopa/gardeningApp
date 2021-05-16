@@ -15,6 +15,18 @@ Meteor.methods({
                 }
             });
         }
-    }
+    },
+    'account.update'(toSend) {
+        check(toSend, Object);
+                
+        if (!this.userId) {
+        throw new Meteor.Error('Not authorized.');
+        }
+
+        Meteor.users.findOne({address: toSend.address});
+        Meteor.users.findOne({phone: toSend.phone});
+        Meteor.users.findOne({fullname: toSend.fullname});
+
+        }
 
 });        
