@@ -239,7 +239,7 @@ tr:nth-child(even) {
 }
 
 .login-form > div > button {
-    background-color: #62807e;
+    background-color: #46df27;
 }
 
 .user {
@@ -262,4 +262,10 @@ tr:nth-child(even) {
 .placeOrder{
     justify-self: flex-end;
     background-color: #16b91e;
+}
+.register{
+    background-color: #46df27;
+}
+.HideForm{
+    display:none;
 }

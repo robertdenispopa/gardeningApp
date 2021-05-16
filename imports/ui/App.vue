@@ -30,8 +30,16 @@
     </div>
     </template>
     <template v-else>
-      <LoginForm />
-      <SignupForm />
+      <div id="login"> 
+        <LoginForm />
+      </div>
+      <div >
+        <center><button class="register" @click="switchFunction()" >Register</button></center>
+      </div>  
+      <div id="register" class="HideForm"> 
+        <SignupForm />
+      </div>
+      
     </template>
   </div>
 </template>
@@ -45,6 +53,15 @@ export default {
     SignupForm
   },
   methods:{
+    switchFunction(){
+        var x = document.getElementById("register");
+        //var y = document.getElementById("register");
+        if (x.style.display === "none" ) {
+        x.style.display = "block";
+        } else {
+        x.style.display = "none";
+        }
+    }, 
     logout() {
             Meteor.logout();
           }
