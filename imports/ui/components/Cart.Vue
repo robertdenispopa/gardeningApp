@@ -51,7 +51,7 @@ export default {
             const userFilter = currentUser ? { userId: currentUser._id } : {};
             var items = CartCollection.find(
             userFilter,{sort: { createdAt: -1 },}).fetch();
-            
+
             console.log(items);
 
             items.forEach(item => OrderFunction(item));
@@ -63,7 +63,8 @@ export default {
                     name:item.name,
                     description:item.description,
                     price:item.price,
-                    address:currentUser.profile.address
+                    address:currentUser.profile.address,
+                    userId:item.userOfItem
 
                 };
         

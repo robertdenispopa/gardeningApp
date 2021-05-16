@@ -13,6 +13,7 @@ Meteor.methods({
         name:toSend.name,
         description:toSend.description, 
         price:toSend.price,
+        userOfItem:toSend.userOfItem,
         createdAt: new Date,
         userId: this.userId,
     })

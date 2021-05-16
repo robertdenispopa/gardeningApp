@@ -21,6 +21,7 @@
                     <th> Name </th>
                     <th> Description </th>
                     <th> Price </th>
+                    <th> Address </th>
                     <th> Completed </th>
                 </tr>
                 <Order 
