@@ -3,7 +3,7 @@
 
 ## In console:
 ```
-$ git clone https://github.com/fis2021/gardeningApp
+$ git clone https://github.com/robertdenispopa/gardeningApp
 
 $ cd gardeningApp
 
